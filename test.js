@@ -7,7 +7,11 @@
 hostname = *music.163.com, 115.236.121.4, 115.236.118.34, 115.238.119.68, 183.136.182.19
 
 *******************************/
-let headers = $response.headers;
-headers['X-Real-IP'] = '117.136.39.0';
-headers['Forwarded-For'] = '117.136.39.0';
-$done({'headers':headers})
+
+var modifiedHeaders = $request.headers;
+
+modifiedHeaders['X-Forwarded-For'] = '117.136.39.0';
+modifiedHeaders['X-Real-IP'] = '117.136.39.0';
+
+
+$done({headers : modifiedHeaders});
