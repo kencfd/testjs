@@ -19,7 +19,6 @@ try {
     // Optional: Log a success message to the Quantumult X console for debugging
     console.log('Successfully cleared nested top_replies.');
   }
-    console.log(JSON.stringify(obj));
 
   // Stringify the modified object and send it back as the new response body
   $done({ body: JSON.stringify(obj) });
