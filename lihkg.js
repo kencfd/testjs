@@ -4,6 +4,7 @@
  */
 
 // Use a try-catch block to handle potential errors safely
+console.log('test');
 try {
   // Parse the JSON response body into a JavaScript object
   let obj = JSON.parse($response.body);
