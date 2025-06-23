@@ -15,7 +15,7 @@ try {
     
     // Set the nested 'top_replies' array to be empty
     obj.response.top_replies = [];
-
+    obj.response.top_recent_replies = [];
     // Optional: Log a success message to the Quantumult X console for debugging
     console.log('Successfully cleared nested top_replies.');
   }
