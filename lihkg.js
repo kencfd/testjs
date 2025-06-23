@@ -1,21 +1,29 @@
+/*
+ * Filename: clear-top-replies.js
+ * CORRECTED VERSION: Accesses top_replies inside the 'response' object.
+ */
+
+// Use a try-catch block to handle potential errors safely
 try {
-  // Get the response body as a string and parse it into a JavaScript object
+  // Parse the JSON response body into a JavaScript object
   let obj = JSON.parse($response.body);
 
-  // Check if the 'top_replies' key exists in the object and is an array
-  if (obj && obj.top_replies && Array.isArray(obj.top_replies)) {
-    // Set the value of 'top_replies' to an empty array
-    obj.top_replies = [];
-    console.log('Successfully cleared top_replies.');
+  // --- THIS IS THE FIX ---
+  // First, check if the 'response' object exists, and then check for 'top_replies' inside it.
+  if (obj && obj.response && obj.response.top_replies) {
+    
+    // Set the nested 'top_replies' array to be empty
+    obj.response.top_replies = [];
+
+    // Optional: Log a success message to the Quantumult X console for debugging
+    console.log('Successfully cleared nested top_replies.');
   }
 
-  // Convert the modified JavaScript object back into a JSON string
-  // and assign it back to the response body
+  // Stringify the modified object and send it back as the new response body
   $done({ body: JSON.stringify(obj) });
 
 } catch (e) {
-  // If any error occurs (e.g., JSON parsing failed), log the error
-  // and pass through the original response body without crashing
+  // If any error occurs, log it and pass the original response through
   console.log('clear-top-replies.js script error: ' + e);
   $done({});
 }
